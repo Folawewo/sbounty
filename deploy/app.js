@@ -35,6 +35,7 @@ const balanceElement = document.getElementById("balance");
 const amountInput = document.getElementById("amount");
 const depositButton = document.getElementById("deposit");
 const withdrawButton = document.getElementById("withdraw");
+const balanceButton = document.getElementById("check-balance");
 const transactionResultElement = document.getElementById("transaction-result");
 
 // update account information
@@ -44,33 +45,43 @@ function updateAccountInfo() {
   balanceElement.textContent = account.balance.toFixed(2);
 }
 
-// deposit button click event
-depositButton.addEventListener("click", () => {
+// handle user actions with a switch statement
+function performAction(action) {
   try {
     const amount = parseFloat(amountInput.value);
-    account.deposit(amount);
+    switch (action) {
+      case "deposit":
+        account.deposit(amount);
+        transactionResultElement.textContent = `Deposited $${amount.toFixed(
+          2
+        )}`;
+        break;
+      case "withdraw":
+        account.withdraw(amount);
+        transactionResultElement.textContent = `Withdrawn $${amount.toFixed(
+          2
+        )}`;
+        break;
+      case "balance":
+        transactionResultElement.textContent = `Balance: $${account.balance.toFixed(
+          2
+        )}`;
+        break;
+      default:
+        throw new Error("Invalid action");
+    }
     updateAccountInfo();
-    transactionResultElement.textContent = `Deposited $${amount.toFixed(2)}`;
   } catch (error) {
     transactionResultElement.textContent = `Error: ${error.message}`;
   } finally {
     amountInput.value = "";
   }
-});
+}
 
-// withdraw button click event
-withdrawButton.addEventListener("click", () => {
-  try {
-    const amount = parseFloat(amountInput.value);
-    account.withdraw(amount);
-    updateAccountInfo();
-    transactionResultElement.textContent = `Withdrawn $${amount.toFixed(2)}`;
-  } catch (error) {
-    transactionResultElement.textContent = `Error: ${error.message}`;
-  } finally {
-    amountInput.value = "";
-  }
-});
+// button click event listeners
+depositButton.addEventListener("click", () => performAction("deposit"));
+withdrawButton.addEventListener("click", () => performAction("withdraw"));
+balanceButton.addEventListener("click", () => performAction("balance"));
 
 // initial account info update
 updateAccountInfo();
