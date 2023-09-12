@@ -26,7 +26,7 @@ class BankAccount {
 }
 
 // initialize the bank account
-const account = new BankAccount("John Doe", "Savings");
+const account = new BankAccount("Folawewo", "Savings");
 
 // dom elements
 const accountHolderElement = document.getElementById("account-holder");
