@@ -26,7 +26,7 @@ The website incorporates a switch statement to handle user actions, including:
 
 - `Deposit`: Increase the account balance.
 - `Withdraw`: Decrease the account balance.
-- `Check Balance`: Display the current account balance.
+- `Balance`: Display the current account balance.
 - `Invalid Action`: Handle any other invalid actions gracefully.
 
 #### Try-Catch-Finally Blocks
@@ -40,7 +40,7 @@ Exception handling is implemented using try-catch-finally blocks to ensure that 
 #### Usage
 
 1. Enter an amount in the input field.
-2. Click on one of the three buttons: "Deposit," "Withdraw," or "Check Balance."
+2. Click on one of the two buttons: "Deposit," or "Withdraw."
 3. The result of the operation or any errors will be displayed in the "Transaction Result" section.
 4. The account holder name, account type, and balance are displayed at the top of the page.
 
